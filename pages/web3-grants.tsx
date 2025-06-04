@@ -12,6 +12,7 @@ export default function Web3Grants() {
   const [answer, setAnswer] = useState<string | null>(null);
   const [grants, setGrants] = useState<Grant[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Helper to parse grants from the answer string
   function parseGrants(answer: string): Grant[] | null {
@@ -37,21 +38,25 @@ export default function Web3Grants() {
     setLoading(true);
     setAnswer(null);
     setGrants(null);
+    setError(null);
 
     try {
       const res = await fetch("/api/ask", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
         body: JSON.stringify({ question }),
       });
 
       if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+        const errorData = await res.json();
+        throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
       }
 
       const data = await res.json();
-      setLoading(false);
-
+      
       // Try to parse grants, otherwise show as plain text
       const parsed = parseGrants(data.answer);
       if (parsed && parsed.length > 0) {
@@ -63,8 +68,9 @@ export default function Web3Grants() {
       }
     } catch (error) {
       console.error('Error:', error);
+      setError(error instanceof Error ? error.message : 'An error occurred');
+    } finally {
       setLoading(false);
-      setAnswer("Sorry, there was an error processing your request.");
     }
   };
 
@@ -84,11 +90,19 @@ export default function Web3Grants() {
           placeholder="Ask about web3 grants..."
           style={{ width: "70%", padding: 8, fontSize: 16 }}
         />
-        <button type="submit" style={{ padding: "8px 16px", marginLeft: 8, fontSize: 16 }}>
-          Ask
+        <button 
+          type="submit" 
+          style={{ padding: "8px 16px", marginLeft: 8, fontSize: 16 }}
+          disabled={loading}
+        >
+          {loading ? 'Loading...' : 'Ask'}
         </button>
       </form>
-      {loading && <div>Loading...</div>}
+      {error && (
+        <div style={{ color: 'red', marginBottom: 16 }}>
+          Error: {error}
+        </div>
+      )}
       {grants && (
         <table border={1} cellPadding={8} style={{ width: "100%", marginTop: 16 }}>
           <thead>
