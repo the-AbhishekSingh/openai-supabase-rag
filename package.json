@@ -1,12 +1,13 @@
 {
   "name": "openai-supabase-rag",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "next lint",
+    "vercel-build": "next build"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,6 @@
   "description": "",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.10",
-    "@vercel/node": "^3.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
@@ -26,8 +26,11 @@
   "devDependencies": {
     "@types/cors": "^2.8.18",
     "@types/express": "^4.17.22",
+    "@types/node": "^20.0.0",
     "@types/react": "19.1.6",
-    "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
