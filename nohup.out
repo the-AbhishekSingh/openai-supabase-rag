@@ -1,0 +1,166 @@
+[INFO] 21:19:49 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.8.3)
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:19:50 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:22:43 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Compilation error in /Users/aadityasingh/openai-supabase-rag/src/rag.ts
+[ERROR] 21:22:43 ⨯ Unable to compile TypeScript:
+src/rag.ts(39,10): error TS2531: Object is possibly 'null'.
+
+[INFO] 21:22:48 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+[ERROR] 21:22:48 ⨯ Unable to compile TypeScript:
+src/rag.ts(39,10): error TS2531: Object is possibly 'null'.
+
+[INFO] 21:22:53 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:22:53 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:23:06 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+RAG API running on http://localhost:3005
+RateLimitError: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+    at Function.generate (/Users/aadityasingh/openai-supabase-rag/node_modules/openai/src/core/error.ts:96:14)
+    at OpenAI.makeStatusError (/Users/aadityasingh/openai-supabase-rag/node_modules/openai/src/client.ts:400:28)
+    at OpenAI.makeRequest (/Users/aadityasingh/openai-supabase-rag/node_modules/openai/src/client.ts:616:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at answerQuestion (/Users/aadityasingh/openai-supabase-rag/src/rag.ts:26:22)
+    at /Users/aadityasingh/openai-supabase-rag/src/index.ts:15:20 {
+  status: 429,
+  headers: Headers {
+    date: 'Wed, 04 Jun 2025 15:53:48 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '337',
+    connection: 'keep-alive',
+    vary: 'Origin',
+    'x-request-id': 'req_c6a50d539f148362c4e2de9673aa5350',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=e1pNMuSOUCqn32mfNpWKVQlZauW4TUhIV4U5IEJW3F0-1749052428-1.0.1.1-oiGyxPSjdI7i96na8viEL4vocoD85zLAomoChYaYo6WtwkEV.VOGvJltguSbWJPYHB7DdrZ03h8RRmvNVIZNw34dqCt0UgTQXF2VIWGeqv0; path=/; expires=Wed, 04-Jun-25 16:23:48 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=4lru2RhWvuZyEOFnR2cz.Dw9BrVu1bBdZPZRYrEUyyI-1749052428230-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'x-content-type-options': 'nosniff',
+    server: 'cloudflare',
+    'cf-ray': '94a89ae95e9331d0-BOM',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_c6a50d539f148362c4e2de9673aa5350',
+  error: {
+    message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+    type: 'insufficient_quota',
+    param: null,
+    code: 'insufficient_quota'
+  },
+  code: 'insufficient_quota',
+  param: null,
+  type: 'insufficient_quota'
+}
+[INFO] 21:24:14 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:24:14 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:24:16 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:24:16 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:25:56 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:25:57 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:26:00 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:26:00 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:33:23 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+RAG API running on http://localhost:3005
+[INFO] 21:33:27 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:33:28 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:33:29 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:33:30 Error: listen EADDRINUSE: address already in use :::3005
+[INFO] 21:43:10 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+RAG API running on http://localhost:3005
+[INFO] 21:43:34 Restarting: /Users/aadityasingh/openai-supabase-rag/src/rag.ts has been modified
+Error: listen EADDRINUSE: address already in use :::3005
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/aadityasingh/openai-supabase-rag/node_modules/express/lib/application.js:635:24)
+    at Object.<anonymous> (/Users/aadityasingh/openai-supabase-rag/src/index.ts:24:5)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1734:14)
+    at Module._compile (/Users/aadityasingh/openai-supabase-rag/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:69:33)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at require.extensions.<computed> (/private/var/folders/gs/ghf3d2_s0dj92jt226x3lx0c0000gn/T/ts-node-dev-hook-8978852896227314.js:71:20)
+[ERROR] 21:43:34 Error: listen EADDRINUSE: address already in use :::3005
