@@ -38,28 +38,33 @@ export default function Web3Grants() {
     setAnswer(null);
     setGrants(null);
 
-    // Use relative path for API endpoint
-    const apiUrl = process.env.NODE_ENV === 'production' 
-      ? '/api/ask'
-      : 'http://localhost:3005/api/ask';
+    try {
+      const res = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+      });
 
-    const res = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question }),
-    });
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
-    const data = await res.json();
-    setLoading(false);
+      const data = await res.json();
+      setLoading(false);
 
-    // Try to parse grants, otherwise show as plain text
-    const parsed = parseGrants(data.answer);
-    if (parsed && parsed.length > 0) {
-      setGrants(parsed);
-      setAnswer(null);
-    } else {
-      setAnswer(data.answer);
-      setGrants(null);
+      // Try to parse grants, otherwise show as plain text
+      const parsed = parseGrants(data.answer);
+      if (parsed && parsed.length > 0) {
+        setGrants(parsed);
+        setAnswer(null);
+      } else {
+        setAnswer(data.answer);
+        setGrants(null);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setLoading(false);
+      setAnswer("Sorry, there was an error processing your request.");
     }
   };
 
