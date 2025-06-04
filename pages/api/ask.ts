@@ -21,34 +21,76 @@ function runMiddleware(req: NextApiRequest, res: NextApiResponse, fn: Function) 
   });
 }
 
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Run the CORS middleware
-  await runMiddleware(req, res, cors);
-
-  // Handle OPTIONS request
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { question } = req.body;
-  if (!question) {
-    return res.status(400).json({ error: 'Question is required' });
-  }
+  // Set response headers
+  res.setHeader('Content-Type', 'application/json');
 
   try {
+    // Run the CORS middleware
+    await runMiddleware(req, res, cors);
+
+    // Handle OPTIONS request
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
+
+    // Only allow POST requests
+    if (req.method !== 'POST') {
+      return res.status(405).json({ 
+        error: 'Method not allowed',
+        method: req.method,
+        allowedMethods: ['POST']
+      });
+    }
+
+    // Validate request body
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ 
+        error: 'Invalid request body',
+        details: 'Request body must be a JSON object'
+      });
+    }
+
+    const { question } = req.body;
+
+    if (!question || typeof question !== 'string') {
+      return res.status(400).json({ 
+        error: 'Invalid question',
+        details: 'Question must be a non-empty string'
+      });
+    }
+
+    // Process the question
     const answer = await answerQuestion(question);
-    res.status(200).json({ answer });
+    
+    // Ensure answer is a string
+    if (typeof answer !== 'string') {
+      return res.status(500).json({ 
+        error: 'Invalid response format',
+        details: 'Answer must be a string'
+      });
+    }
+
+    // Send successful response
+    return res.status(200).json({ answer });
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Error in API route:', err);
+    
+    // Ensure error response is properly formatted
+    return res.status(500).json({ 
+      error: 'Internal server error',
+      details: err instanceof Error ? err.message : 'Unknown error'
+    });
   }
 } 

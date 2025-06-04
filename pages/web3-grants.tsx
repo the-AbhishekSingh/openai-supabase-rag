@@ -50,13 +50,31 @@ export default function Web3Grants() {
         body: JSON.stringify({ question }),
       });
 
+      // Check if response is ok before trying to parse JSON
       if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
+        const errorText = await res.text();
+        let errorMessage;
+        try {
+          const errorJson = JSON.parse(errorText);
+          errorMessage = errorJson.error || errorJson.details || `HTTP error! status: ${res.status}`;
+        } catch {
+          errorMessage = `HTTP error! status: ${res.status}`;
+        }
+        throw new Error(errorMessage);
       }
 
-      const data = await res.json();
-      
+      // Try to parse the response as JSON
+      let data;
+      try {
+        data = await res.json();
+      } catch (e) {
+        throw new Error('Invalid JSON response from server');
+      }
+
+      if (!data || typeof data.answer !== 'string') {
+        throw new Error('Invalid response format from server');
+      }
+
       // Try to parse grants, otherwise show as plain text
       const parsed = parseGrants(data.answer);
       if (parsed && parsed.length > 0) {
@@ -67,7 +85,7 @@ export default function Web3Grants() {
         setGrants(null);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error in handleSubmit:', error);
       setError(error instanceof Error ? error.message : 'An error occurred');
     } finally {
       setLoading(false);
