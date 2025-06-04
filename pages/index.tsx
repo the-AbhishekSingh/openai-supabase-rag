@@ -5,7 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/ask');
+    router.push('/web3-grants');
   }, [router]);
 
   return null;
