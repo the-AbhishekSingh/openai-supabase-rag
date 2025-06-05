@@ -3,9 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   // Disable serverless functions for better performance
-  experimental: {
-    serverless: false
-  },
+  // experimental: {
+  //   serverless: false
+  // },
   // Optimize build output
   webpack: (config, { dev, isServer }) => {
     // Optimize only in production
