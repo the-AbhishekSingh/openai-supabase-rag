@@ -24,9 +24,9 @@ export async function answerQuestion(question: string): Promise<string> {
 
   // First try to find exact matches in the database
   const { data, error } = await supabase
-    .from("web3_grants")
-    .select("grant_name, description, organization, link, category")
-    .or(`grant_name.ilike.*${keyword}*,description.ilike.*${keyword}*,organization.ilike.*${keyword}*,category.ilike.*${keyword}*`)
+    .from("grant_metadata")
+    .select("name, details, link, category, subcategory")
+    .or(`name.ilike.*${keyword}*,details.ilike.*${keyword}*,category.ilike.*${keyword}*,subcategory.ilike.*${keyword}*`)
     .limit(5);
 
   if (error) {
@@ -52,7 +52,7 @@ export async function answerQuestion(question: string): Promise<string> {
       .map(([category, grants]) => {
         const grantsList = grants
           .map(grant => 
-            `Grant: ${grant.grant_name}\nOrganization: ${grant.organization}\nDescription: ${grant.description}\nLink: <a href="${grant.link}" target="_blank">${grant.link}</a>`
+            `Name: ${grant.name}\nDetails: ${grant.details}\nSubcategory: ${grant.subcategory || ''}\nLink: <a href="${grant.link}" target="_blank">${grant.link}</a>`
           )
           .join("\n\n");
         return `Category: ${category}\n\n${grantsList}`;
